@@ -31,7 +31,8 @@ passport.serializeUser(function(user, done) {
 passport.use(new FacebookStrategy({
     clientID: '264464465040986',
     clientSecret: '80fa2f9f877328634e24662b4b71b7b4',
-    callbackURL: "https://passport-fb.herokuapp.com/auth/facebook/callback"
+    callbackURL: "https://passport-fb.herokuapp.com/auth/facebook/callback",
+    profileFields:['id','displayName','photos','email']
    
   },
   function(accessToken, refreshToken, profile, cb) {
@@ -46,7 +47,7 @@ function(req, res) {
   res.redirect('/home');
 });
 app.get('/home',(req,res,next)=>{
-    res.json(req.user.displayName);
+    res.json(req.user);
 })
 app.listen(PORT,(req,res)=>{
     console.log(`server runing at ${PORT} `)
