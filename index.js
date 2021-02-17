@@ -35,6 +35,7 @@ passport.use(new FacebookStrategy({
    
   },
   function(accessToken, refreshToken, profile, cb) {
+      console.log(profile)
     return cb(null, profile);
   }
 ));
@@ -44,6 +45,9 @@ function(req, res) {
   // Successful authentication, redirect home.
   res.redirect('/');
 });
+app.get('/home',(req,res,next)=>{
+    res.json(req.user);
+})
 app.listen(PORT,(req,res)=>{
     console.log(`server runing at ${PORT} `)
 })
