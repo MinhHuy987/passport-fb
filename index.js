@@ -46,7 +46,7 @@ function(req, res) {
   res.redirect('/home');
 });
 app.get('/home',(req,res,next)=>{
-    res.json(req.user);
+    res.json(req.user.displayName);
 })
 app.listen(PORT,(req,res)=>{
     console.log(`server runing at ${PORT} `)
